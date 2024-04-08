@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ChartData, ChartEvent, ChartType, Color } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+import { ChartData, ChartType } from 'chart.js';
+
 
 @Component({
   selector: 'app-grafica1',
@@ -8,27 +8,18 @@ import { BaseChartDirective } from 'ng2-charts';
   styles: ``
 })
 export class Grafica1Component {
-  //we can set the names of the donut chart labels
-  public doughnutChartLabels: string[] = [
-    'Download Sales',
-    'In-Store Sales',
-    'Mail-Order Sales',
+ 
+  public doughnutChartLabels1: string[] = [
+    'Completos',
+    'Pizza',
+    'Sushi',
   ];
 
-  // public doughnutChartData: ChartData<'doughnut'> = {
-  //   labels: this.doughnutChartLabels,
-  //   datasets: [
-  //     { data: [350, 450, 100] },
-  //     { data: [50, 150, 120] },
-  //     { data: [250, 130, 70] },
-  //   ],
-  // };
-  //we can set the labels, the data, and the colors,
-  //three labels => data with lenght 3 => 3 colors
-  public doughnutChartData: ChartData<'doughnut'> = {
-    labels: this.doughnutChartLabels,
+
+  public doughnutChartData1: ChartData<'doughnut'> = {
+    labels: this.doughnutChartLabels1,
     datasets: [
-      { data: [350, 450, 100], 
+      { data: [35000, 4510, 10900], 
         backgroundColor: ['#7EC8E3','#0000FF','#FFC0CB']
       },
     ],
@@ -36,25 +27,5 @@ export class Grafica1Component {
   public doughnutChartType: ChartType = 'doughnut';
 
 
-  // events
-  public chartClicked({
-    event,
-    active,
-  }: {
-    event: ChartEvent;
-    active: object[];
-  }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({
-    event,
-    active,
-  }: {
-    event: ChartEvent;
-    active: object[];
-  }): void {
-    console.log(event, active);
-  }
 
 }

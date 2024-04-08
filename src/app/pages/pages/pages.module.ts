@@ -30,7 +30,7 @@ import { ComponentsModule } from '../../components/components.module';
     SharedModule,
     RouterModule,
     ComponentsModule,
-    BaseChartDirective  
+  
     
   ],
   exports: [
