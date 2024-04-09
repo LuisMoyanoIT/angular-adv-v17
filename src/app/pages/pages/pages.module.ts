@@ -12,6 +12,7 @@ import { ProgressComponent } from '../progress/progress.component';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ComponentsModule } from '../../components/components.module';
+import { AccountSettingsComponent } from '../account-settings/account-settings.component';
 
 
 
@@ -22,6 +23,7 @@ import { ComponentsModule } from '../../components/components.module';
     ProgressComponent,
     Grafica1Component,
     PagesComponent,
+    AccountSettingsComponent
 
   ],
   imports: [
@@ -30,6 +32,7 @@ import { ComponentsModule } from '../../components/components.module';
     SharedModule,
     RouterModule,
     ComponentsModule,
+    
   
     
   ],
@@ -38,6 +41,7 @@ import { ComponentsModule } from '../../components/components.module';
     ProgressComponent,
     Grafica1Component,
     PagesComponent,
+    AccountSettingsComponent
   ],
   providers: [provideCharts(withDefaultRegisterables())],
 })
