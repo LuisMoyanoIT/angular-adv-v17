@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
-import { PagesRoutingModule } from './pages/pages/pages.routing';
+import { PagesRoutingModule } from './pages/pages.routing';
 import { AuthRoutingModule } from './auth/auth.routing';
 
 
