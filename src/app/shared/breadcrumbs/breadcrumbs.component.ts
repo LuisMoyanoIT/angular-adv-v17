@@ -22,7 +22,6 @@ export class BreadcrumbsComponent implements OnDestroy{
 
   }
   ngOnDestroy(): void {
-    console.log("bai bai")
     this.titleSubs$.unsubscribe();
   }
 
