@@ -8,6 +8,7 @@ import { AccountSettingsComponent } from "./account-settings/account-settings.co
 import { PromesasComponent } from "./promesas/promesas.component"
 import { RxjsComponent } from "./rxjs/rxjs.component"
 import { authGuard } from "../guards/auth.guard"
+import { PerfilComponent } from "./perfil/perfil.component"
 
 const routes: Routes = [
     { path: 'dashboard', 
@@ -21,6 +22,7 @@ const routes: Routes = [
       {path: 'settings', component: AccountSettingsComponent, data: {titulo: 'Settings'}},
       {path: 'promesas', component: PromesasComponent, data: {titulo: 'Promesas'}},
       {path: 'rxjs', component: RxjsComponent, data: {titulo: 'Arrakis JOTA Z'}},
+      {path: 'perfil', component: PerfilComponent, data: {titulo: 'Perfil'}},
     //   {path: '',redirectTo: '/dashboard', pathMatch:'full'},
 
     ]

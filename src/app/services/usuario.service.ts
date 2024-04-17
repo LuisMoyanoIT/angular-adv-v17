@@ -5,7 +5,7 @@ import { userInterface } from '../interfaces/user.interface';
 import { environment } from '../../environments/environment';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
-
+import Swal from 'sweetalert2';
 const api_url = environment.api_url;
 declare const google: any;
 
@@ -13,6 +13,16 @@ declare const google: any;
   providedIn: 'root'
 })
 export class UsuarioService {
+
+  //TODO: implementar servicio observable para actualizar la info en
+  //los otros componentes
+
+  public usuario: Usuario = {
+    name: '',
+    email: '',
+    imageUrl: '',
+    image: ''
+  };
 
   constructor(private http: HttpClient,
     public router: Router) { }
@@ -24,6 +34,38 @@ export class UsuarioService {
       tap( (resp:any) => {
         localStorage.setItem('token', resp.token);
       })
+)
+  }
+
+  editUser(data: {email:any, name: any})
+  {
+    const token = localStorage.getItem('token') || '';
+    return this.http.put(`${api_url}/usuarios/${this.usuario?.uid}`, data, {
+      headers: {
+        'x-token': token
+      }
+    }).pipe(
+      tap( (resp:any) => {
+        const {email ,google,image,name,  role, uid} = resp.usuario
+        this.usuario = new Usuario(
+          name,
+          email,
+          image,
+          google,
+          uid,
+          role
+        )
+      }),
+      catchError((err:any) => {
+        Swal.fire({
+          title: 'Error!',
+          text: err.error.message,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        })
+
+        return of(false);
+      } )
 )
   }
 
@@ -53,6 +95,16 @@ export class UsuarioService {
       }
     }).pipe(
       tap( (resp:any) => {
+        const {email ,google,image,name,  role, uid} = resp.usuario
+        this.usuario = new Usuario(
+          name,
+          email,
+          image,
+          google,
+          uid,
+          role
+        )
+
         localStorage.setItem('token', resp.token);
       }),
       map(resp => true),
