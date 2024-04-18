@@ -20,6 +20,7 @@ export class PerfilComponent implements OnInit{
   public usuario: any = {
     name: '',
     email: '',
+    role: '',
     imageUrl: '',
     image: '',
     uid: ''
@@ -62,10 +63,12 @@ export class PerfilComponent implements OnInit{
     }
     let userEdited = {
       name: this.perfilForm.get('name')?.value,
-      email: this.perfilForm.get('email')?.value
+      email: this.perfilForm.get('email')?.value,
+      role: this.usuario.role,
+      uid: this.usuario.uid
     }
     console.log(this.perfilForm.value);
-    this.usuarioService.editUser(userEdited).subscribe(
+    this.usuarioService.editUser(userEdited, 'ownUser').subscribe(
       (resp:any) => {
         if(resp.ok)
         {

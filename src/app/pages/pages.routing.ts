@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router"
+
 import { PagesComponent } from "./pages.component"
 import { DashboardComponent } from "./dashboard/dashboard.component"
 import { ProgressComponent } from "./progress/progress.component"
@@ -9,6 +10,9 @@ import { PromesasComponent } from "./promesas/promesas.component"
 import { RxjsComponent } from "./rxjs/rxjs.component"
 import { authGuard } from "../guards/auth.guard"
 import { PerfilComponent } from "./perfil/perfil.component"
+import { UsuariosComponent } from "./mantenimientos/usuarios/usuarios.component"
+import { MedicosComponent } from "./mantenimientos/medicos/medicos.component"
+import { HospitalesComponent } from "./mantenimientos/hospitales/hospitales.component"
 
 const routes: Routes = [
     { path: 'dashboard', 
@@ -23,7 +27,10 @@ const routes: Routes = [
       {path: 'promesas', component: PromesasComponent, data: {titulo: 'Promesas'}},
       {path: 'rxjs', component: RxjsComponent, data: {titulo: 'Arrakis JOTA Z'}},
       {path: 'perfil', component: PerfilComponent, data: {titulo: 'Perfil'}},
-    //   {path: '',redirectTo: '/dashboard', pathMatch:'full'},
+      //mantenimientos
+      {path: 'usuarios', component: UsuariosComponent, data: {titulo: 'Usuarios'}},
+      {path: 'medicos', component: MedicosComponent, data: {titulo: 'Medicos'}},
+      {path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Hospitales'}},
 
     ]
   },

@@ -17,6 +17,15 @@ export class SidebarService {
         {title: 'Rx JOTA ESE', url: 'rxjs'},
         {title: 'Perfil', url: 'perfil'},
       ]
+    },
+    {
+      title: 'Mantenimientos',
+      icon: 'mdi mdi-folder-lock-open',
+      submenu: [
+        {title: 'Usuarios', url: 'usuarios'},
+        {title: 'Hospitales', url: 'hospitales'},
+        {title: 'Medicos', url: 'medicos'},]
+
     }
   ]
 

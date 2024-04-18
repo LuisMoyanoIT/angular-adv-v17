@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario.model';
 import { userInterface } from '../interfaces/user.interface';
 import { environment } from '../../environments/environment';
-import { Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError, delay, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 const api_url = environment.api_url;
@@ -37,16 +37,26 @@ export class UsuarioService {
 )
   }
 
-  editUser(data: {email:any, name: any})
+  editUser(data: {email:any, name: any, role:any, uid:any}, typeOfEdition: 'ownUser' | 'otherUser')
   {
+    let Id:any;
+    if(typeOfEdition === 'otherUser')
+    {
+      Id = data.uid;
+    }else{
+      Id = this.usuario?.uid
+    }
     const token = localStorage.getItem('token') || '';
-    return this.http.put(`${api_url}/usuarios/${this.usuario?.uid}`, data, {
+    return this.http.put(`${api_url}/usuarios/${Id}`, data, {
       headers: {
         'x-token': token
       }
     }).pipe(
       tap( (resp:any) => {
-        const {email ,google,image,name,  role, uid} = resp.usuario
+
+        if(typeOfEdition === 'ownUser')
+        {
+          const {email ,google,image,name,  role, uid} = resp.usuario
         this.usuario = new Usuario(
           name,
           email,
@@ -55,6 +65,7 @@ export class UsuarioService {
           uid,
           role
         )
+        }
       }),
       catchError((err:any) => {
         Swal.fire({
@@ -119,6 +130,42 @@ export class UsuarioService {
     google.accounts.id.revoke( 'luismocru@gmail.com', ()=>{
       this.router.navigateByUrl("/login");
     })
+  }
+
+  getAllUsers(desde: number) {
+    const token = localStorage.getItem('token') || '';
+    return this.http.get(`${api_url}/usuarios?desde=${desde}`, {
+      headers: {
+        'x-token': token
+      }
+    }).pipe(
+      delay(1000),
+      map((resp: any) => {
+        const usuarios = resp.usuarios.map((user:any) => new Usuario(
+          user.name,
+          user.email,
+          user.image,
+          user.google,
+          user.uid,
+          user.role
+        ))
+        return {
+          totalUsuarios: resp.totalUsuarios,
+          usuarios
+        };
+
+      })
+    )
+
+  }
+
+  deleteUser(id: string | undefined)
+  {
+    const token = localStorage.getItem('token') || '';
+    return this.http.delete(`${api_url}/usuarios/${id}`, {
+      headers: {
+        'x-token': token
+      }});
   }
 
 
