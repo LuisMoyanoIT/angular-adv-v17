@@ -16,7 +16,7 @@ export class FileUploadService {
 
   updateFile(
     archivo: File , 
-    tipo: 'usuarios' | 'medicos' | 'hospitales',
+    tipo: 'usuarios' | 'medicos' | 'hospitales' | any,
     id: string
     )
   {
