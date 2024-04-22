@@ -1,1 +1,103 @@
-<p>hospitales works!</p>
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text" 
+                       class="form-control" 
+                       placeholder="Buscar Hospitales..." 
+                       (keyup)="searchHospitalByParameters(txtParameter.value)" #txtParameter 
+                />
+                       
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div  *ngIf="loadingHospitals" class="row animated fadeIn slow">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x tex"></i>
+            <p class="mb-0">Porfavor espere</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="!loadingHospitals" >
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-8" >
+                        <h4 class="card-title">Hospitales : {{hospitales.length}}</h4>
+                        <h6 class="card-subtitle">Hospitales registrados en Admin Pro</h6>
+                    </div>
+                    <div class="col-4 text-right">
+                        <button class="btn btn-primary" 
+                                (click)="abrirSweetAlert()"
+                        >
+                            <i class="fa fa-hospital-o"></i>
+                            Crear Hospital
+                        </button>
+                    </div>
+
+                </div>
+            
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Name</th>
+                                <th class="text-nowrap w100">acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hospital of hospitales" >
+                                <td>
+                                    <img [src]="hospital.image | imagen: 'hospitales' " 
+                                         alt="Hospital Image"
+                                         class="image-avatar w100 selector"
+                                         (click)=" showModalUpdateImageHospital(hospital)"
+                                         >
+                                </td>
+                                <td>
+                                    <input type="text" 
+                                    class="form-control" 
+                                    placeholder="Nombre Hospital" 
+                                    [(ngModel)]="hospital.name"
+                                    />
+                                </td>
+     
+                            
+                                <td class="text-nowrap">
+                                    <a (click)="editHospital(hospital)" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                    <a (click)="deleteHospital(hospital)" data-toggle="tooltip" data-original-title="Borrar"> <i class="fa fa-close text-danger"></i> </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <button class="btn btn-secondary">
+                    Anterior
+                </button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-secondary">
+                    Siguiente
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+

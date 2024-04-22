@@ -28,7 +28,9 @@ export class BusquedasService {
       }
     }).pipe(
       map((resp: any) => {
-        const usuarios = resp.resultados.map((user:any) => new Usuario(
+        if(coleccion === 'usuarios')
+        {
+          const usuarios = resp.resultados.map((user:any) => new Usuario(
           user.name,
           user.email,
           user.image,
@@ -39,6 +41,10 @@ export class BusquedasService {
         return {
           usuarios
         };
+        }else{
+          return resp;
+        }
+        
 
       })
     )
