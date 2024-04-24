@@ -10,7 +10,7 @@ export class Usuario {
         public image?: string,
         public google?: boolean,
         public uid?: string,
-        public role?: string,        
+        public role?: 'ADMIN_ROLE' | 'USER_ROLE',        
     ){}
 
     get imageUrl()

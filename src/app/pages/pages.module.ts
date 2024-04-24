@@ -21,6 +21,7 @@ import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { MedicoComponent } from './mantenimientos/medicos/medico/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 
@@ -39,6 +40,7 @@ import { MedicoComponent } from './mantenimientos/medicos/medico/medico.componen
     MedicosComponent,
     HospitalesComponent,
     MedicoComponent,
+    BusquedaComponent,
 
   ],
   imports: [

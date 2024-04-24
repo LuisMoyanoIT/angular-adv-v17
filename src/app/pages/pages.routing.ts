@@ -14,6 +14,8 @@ import { UsuariosComponent } from "./mantenimientos/usuarios/usuarios.component"
 import { MedicosComponent } from "./mantenimientos/medicos/medicos.component"
 import { HospitalesComponent } from "./mantenimientos/hospitales/hospitales.component"
 import { MedicoComponent } from "./mantenimientos/medicos/medico/medico.component"
+import { BusquedaComponent } from "./busqueda/busqueda.component"
+import { adminGuard } from "../guards/admin.guard"
 
 const routes: Routes = [
     { path: 'dashboard', 
@@ -29,10 +31,12 @@ const routes: Routes = [
       {path: 'rxjs', component: RxjsComponent, data: {titulo: 'Arrakis JOTA Z'}},
       {path: 'perfil', component: PerfilComponent, data: {titulo: 'Perfil'}},
       //mantenimientos
-      {path: 'usuarios', component: UsuariosComponent, data: {titulo: 'Usuarios'}},
+      {path: 'usuarios', canActivate: [adminGuard],component: UsuariosComponent, data: {titulo: 'Usuarios'}},
       {path: 'medicos', component: MedicosComponent, data: {titulo: 'Medicos'}},
       {path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Hospitales'}},
       {path: 'medico/:id', component: MedicoComponent, data: {titulo: 'Medico'}},
+
+      {path: 'busqueda/:parametro', component: BusquedaComponent, data: {titulo: 'Busquedas'}},
 
     ]
   },

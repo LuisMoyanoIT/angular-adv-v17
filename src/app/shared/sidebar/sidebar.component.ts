@@ -15,9 +15,9 @@ export class SidebarComponent {
   public userName: string = '';
   
 
-  constructor(private sidebarService: SidebarService,
+  constructor(public sidebarService: SidebarService,
               private usuarioService: UsuarioService){
-    this.menuItems = sidebarService.menu;
+   
     this.imageUrl = usuarioService.usuario?.imageUrl || '';
     this.userName = usuarioService.usuario?.name || '';
     

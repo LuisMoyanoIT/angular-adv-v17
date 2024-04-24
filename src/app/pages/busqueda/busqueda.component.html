@@ -1,0 +1,99 @@
+<div class="row animated fadeIn slow">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Usuarios</h3>
+                <div  *ngIf="usuarios.length === 0" class="alert alert-info">
+                    <p class="mb-0" >No hay usuarios con ese termino</p>
+                </div>
+                <div  *ngIf="usuarios.length > 0" class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w100">Avatar</th>
+                                <th>name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios" >
+                                <td>               
+                                    <img class="image-avatar w100 text-center" [src]="usuario.image | imagen: 'usuarios' "  alt="">
+                                </td>
+                                <td>{{usuario.name}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Medicos</h3>
+                <div  *ngIf="medicos.length === 0" class="alert alert-info">
+                    <p class="mb-0" >No hay Medicos con ese termino</p>
+                </div>
+                <div  *ngIf="medicos.length > 0" class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w100">Avatar</th>
+                                <th>name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let medico of medicos" 
+                                
+                            >
+                                <td>               
+                                    <img class="image-avatar w100 text-center" [src]="medico.image | imagen: 'medicos' "  alt="">
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/dashboard/medico', medico.id]">
+                                        {{medico.name}}
+                                    </a>
+                                    </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Hospitales</h3>
+                <div   *ngIf="hospitales.length === 0" class="alert alert-info">
+                    <p class="mb-0" >No hay Hospitales con ese termino</p>
+                </div>
+                <div   *ngIf="hospitales.length > 0" class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w100">Avatar</th>
+                                <th>name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hospital of hospitales" >
+                                <td>               
+                                    <img class="image-avatar w100 text-center" [src]="hospital.image | imagen: 'hospitales' "  alt="">
+                                </td>
+                                <td>{{hospital.name}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div> 

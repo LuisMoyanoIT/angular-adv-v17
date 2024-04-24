@@ -25,7 +25,13 @@ export class HeaderComponent {
   logout()
   {
     this.usuarioService.logout();
-    //this.router.navigateByUrl("/login");
+    this.router.navigateByUrl("/login");
+  }
+
+  searchByParameter(value:string)
+  {
+    if( value === '') return;
+    this.router.navigateByUrl(`/dashboard/busqueda/${value}`)
   }
 
   

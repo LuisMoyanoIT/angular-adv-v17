@@ -21,18 +21,28 @@ export class UsuarioService {
     name: '',
     email: '',
     imageUrl: '',
-    image: ''
+    image: '',
+    role: 'USER_ROLE'
   };
 
   constructor(private http: HttpClient,
     public router: Router) { }
 
+  get role(): 'ADMIN_ROLE' | 'USER_ROLE' | any {
+    return this.usuario.role
+  }
+
+  setItemsInLocalStorage(token: string, menu: any)
+  {
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
 
   createUser(body: userInterface)
   {
     return this.http.post(`${api_url}/usuarios`, body).pipe(
       tap( (resp:any) => {
-        localStorage.setItem('token', resp.token);
+        this.setItemsInLocalStorage(resp.token, resp.menu);
       })
 )
   }
@@ -84,7 +94,7 @@ export class UsuarioService {
   {
     return this.http.post(`${api_url}/login`, body).pipe(
                                                   tap( (resp:any) => {
-                                                    localStorage.setItem('token', resp.token);
+                                                    this.setItemsInLocalStorage(resp.token, resp.menu);
                                                   })
     )
   }
@@ -93,7 +103,7 @@ export class UsuarioService {
   {
     return this.http.post(`${api_url}/login/google`, {token}).pipe(
       tap( (resp:any) => {
-        localStorage.setItem('token', resp.token);
+        this.setItemsInLocalStorage(resp.token, resp.menu);
       }))
   }
 
@@ -116,7 +126,7 @@ export class UsuarioService {
           role
         )
 
-        localStorage.setItem('token', resp.token);
+        this.setItemsInLocalStorage(resp.token, resp.menu);
       }),
       map(resp => true),
          catchError(error => of(false))
@@ -126,7 +136,9 @@ export class UsuarioService {
 
   logout()
   {
+    //TODO: borrar menu
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
     google.accounts.id.revoke( 'luismocru@gmail.com', ()=>{
       this.router.navigateByUrl("/login");
     })

@@ -50,4 +50,16 @@ export class BusquedasService {
     )
 
   }
+
+  globalSearchByParameters(
+    parameter: string
+    
+    ) {
+    return this.http.get(`${api_url}/busqueda/${parameter}`, {
+      headers: {
+        'x-token': this.token
+      }
+    })
+
+  }
 }
