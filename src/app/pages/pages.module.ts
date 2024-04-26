@@ -22,6 +22,8 @@ import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.comp
 import { PipesModule } from '../pipes/pipes.module';
 import { MedicoComponent } from './mantenimientos/medicos/medico/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenService } from '../interceptors/token.service';
 
 
 
@@ -68,6 +70,11 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     MedicosComponent,
     HospitalesComponent,
   ],
-  providers: [provideCharts(withDefaultRegisterables())],
+  providers: [provideCharts(withDefaultRegisterables()),
+              {provide: HTTP_INTERCEPTORS,
+              useClass: TokenService,
+              multi: true
+              }          
+  ],
 })
 export class PagesModule { }
